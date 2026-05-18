@@ -18,7 +18,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("proof/research-report.md"),
+        default=Path("examples/research-report.md"),
         help="Path to write the markdown report",
     )
     args = parser.parse_args(argv)
