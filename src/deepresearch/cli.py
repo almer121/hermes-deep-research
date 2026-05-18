@@ -41,13 +41,14 @@ def main(argv: list[str] | None = None) -> int:
     args.output.write_text(run.report, encoding="utf-8")
 
     elapsed_ms = (time.perf_counter() - started) * 1000
-    print(f"Report written: {args.output}")
+    output_size = args.output.stat().st_size
+    print(f"Report written: {args.output} ({output_size} bytes)")
     print(f"Sub-questions: {len(run.plan.sub_questions)}")
     print(f"Sources collected: {len(run.results)}")
     print(f"Evidence units: {len(run.evidence)}")
     if args.verbose:
         if elapsed_ms < 1000:
-            print(f"Elapsed: {elapsed_ms:.1f} ms")
+            print(f"Elapsed: {elapsed_ms:.1f} ms (offline corpus, no LLM call)")
         else:
             print(f"Elapsed: {elapsed_ms / 1000:.2f} s")
     return 0

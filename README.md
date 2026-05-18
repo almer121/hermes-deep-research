@@ -40,16 +40,25 @@ Expected output (with `--verbose`):
 
 ```text
 [plan] decomposing query: mixture of experts language models
-[plan] 7 sub-questions
-[search] 6 sources collected
+[plan] 7 sub-questions generated
+[search] mode: offline corpus
+[search] querying: What exactly is meant by ...
+[search] querying: What is the current state of the art for ...
+[search] querying: What are the leading approaches for ...
+[search] querying: What are the main trade-offs between those approaches?
+[search] querying: What are the open challenges and most recent advances for ...
+[search] querying: Which tools, libraries, or platforms support ...
+[search] querying: How are practitioners actually using ...
+[search] 6 unique sources collected
 [extract] 6 evidence units
-[synthesize] 2 sections
-[report] rendering markdown
-Report written: examples/research-report.md
+[synthesize] grouping evidence by analytical angle
+[synthesize] 2 sections produced
+[report] markdown rendered
+Report written: examples/research-report.md (2370 bytes)
 Sub-questions: 7
 Sources collected: 6
 Evidence units: 6
-Elapsed: 12.4 ms
+Elapsed: 0.9 ms (offline corpus, no LLM call)
 ```
 
 A sample report is committed at `examples/research-report.md`.
