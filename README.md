@@ -1,5 +1,9 @@
 # Hermes Deep Research
 
+[![tests](https://github.com/almer121/hermes-deep-research/actions/workflows/tests.yml/badge.svg)](https://github.com/almer121/hermes-deep-research/actions/workflows/tests.yml)
+[![python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+[![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 Autonomous multi-stage research agent. Decompose a question into sub-questions, search across sources, extract typed evidence, synthesize findings, attach citations, render a markdown report. Built as a reference workflow for agentic research pipelines.
 
 ## Why deep research
@@ -25,20 +29,27 @@ Each stage is a pure module under `src/deepresearch/`. The provider interface fo
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-pip install pytest
-PYTHONPATH=src:. python3 -m pytest tests -q
-PYTHONPATH=src:. python3 -m deepresearch.cli \
-  "mixture of experts language models" \
-  --output examples/research-report.md
+pip install -e .[dev]
+pytest tests -v
+deepresearch "mixture of experts language models" \
+  --output examples/research-report.md \
+  --verbose
 ```
 
-Expected output:
+Expected output (with `--verbose`):
 
 ```text
+[plan] decomposing query: mixture of experts language models
+[plan] 7 sub-questions
+[search] 6 sources collected
+[extract] 6 evidence units
+[synthesize] 2 sections
+[report] rendering markdown
 Report written: examples/research-report.md
 Sub-questions: 7
 Sources collected: 6
 Evidence units: 6
+Elapsed: 12.4 ms
 ```
 
 A sample report is committed at `examples/research-report.md`.
